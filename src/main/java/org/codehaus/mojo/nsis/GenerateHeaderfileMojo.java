@@ -64,6 +64,9 @@ public class GenerateHeaderfileMojo
     @Parameter( defaultValue = "${project}", required = true, readonly = true )
     private MavenProject project;
 
+    @Parameter
+    private String classifier;
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -102,6 +105,7 @@ public class GenerateHeaderfileMojo
             writer.println( "!define PROJECT_ARTIFACT_ID \"{0}\"", project.getArtifactId() );
             writer.println( "!define PROJECT_NAME \"{0}\"", project.getName() );
             writer.println( "!define PROJECT_VERSION \"{0}\"", project.getVersion() );
+            writer.println( "!define PROJECT_CLASSIFIER \"{0}\"", classifier );
 
             if ( StringUtils.isNotEmpty( project.getUrl() ) )
             {
